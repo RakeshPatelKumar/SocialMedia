@@ -3,12 +3,12 @@ import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { authDataContext } from "../context/AuthContext";
 import axios from "axios";
-import { UserDataContext } from '../context/userContext'
+import { userDataContext } from '../context/UserContext'
 
 function Login() {
   let [show, setShow] = useState(false);
   let { serverUrl } = useContext(authDataContext);
-   let {userData,setUserData}=useContext(UserDataContext)
+   let {userData,setUserData}=useContext(userDataContext)
   let navigate = useNavigate();
 
   let [email, setEmail] = useState("");
@@ -104,7 +104,7 @@ function Login() {
           className="w-full h-[50px] rounded-full bg-[#24b2ff] mt-[40px] text-white"
           disabled={loading}
         >
-          {loading ? "Loading..." : "Sign Up"}
+          {loading ? "Loading..." : "Sign In"}
         </button>
 
         <p

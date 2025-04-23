@@ -2,11 +2,11 @@ import React,{ createContext, useContext, useEffect, useState} from 'react'
 import { authDataContext } from './AuthContext'
 import axios from 'axios'
 // import { useNavigate } from 'react-router-dom'
-export const UserDataContext=createContext()
+export const userDataContext=createContext()
 function UserContext({children}) {
 let [userData,setUserData]=useState(null)
 let {serverUrl}=useContext(authDataContext)
-// let [edit,setEdit]=useState(false)
+ let [edit,setEdit]=useState(false)
 // let [postData,setPostData]=useState([])
 // let [profileData,setProfileData]=useState([])
 // let navigate=useNavigate()
@@ -26,16 +26,16 @@ useEffect(()=>{
 },[])
 
 const value={
-  userData,setUserData
+  userData,setUserData,edit,setEdit
 }
 
 
 
   return (
      <div>
-            <UserDataContext.Provider value={value}>
+            <userDataContext.Provider value={value}>
           {children}
-          </UserDataContext.Provider>
+          </userDataContext.Provider>
         </div>
   )
 }

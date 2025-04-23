@@ -3,12 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
-import { UserDataContext } from './context/userContext';
+import { userDataContext } from './context/UserContext';
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 
 function App() {
-  let { userData }=useContext(UserDataContext)
+  let { userData }=useContext(userDataContext)
   return (
    <Routes>
     <Route path='/' element={userData?<Home/>:<Navigate to="/login"/>}/>

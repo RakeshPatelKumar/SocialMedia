@@ -3,7 +3,7 @@ import logo from "../assets/logo.png"
 import { useNavigate } from "react-router-dom"
 import { authDataContext } from '../context/AuthContext'
 import axios from "axios"
-import { UserDataContext } from '../context/userContext'
+import { userDataContext } from '../context/UserContext'
 
 function Signup() {
   const [show, setShow] = useState(false)
