@@ -10,16 +10,16 @@ let {serverUrl}=useContext(authDataContext)
 // let [postData,setPostData]=useState([])
 // let [profileData,setProfileData]=useState([])
 // let navigate=useNavigate()
-const getCurrentUser=async ()=>{
-    try {
-        let result=await axios.get(serverUrl+"/api/user/currentuser",{withCredentials:true})
-        setUserData(result.data)
-        // console.log(result);
-    } catch (error) {
-        console.log(error);
-        setUserData(null)
-    }
-}
+const getCurrentUser = async () => {
+  try {
+    console.log("Server URL:", serverUrl); // Debugging log
+    let result = await axios.get(serverUrl + "/api/user/currentuser", { withCredentials: true });
+    setUserData(result.data);
+  } catch (error) {
+    console.log("Error fetching current user:", error);
+    setUserData(null);
+  }
+};
 
 useEffect(()=>{
   getCurrentUser()

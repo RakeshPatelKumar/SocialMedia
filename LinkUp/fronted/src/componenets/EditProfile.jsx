@@ -5,6 +5,7 @@ import { FiCamera } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi";
 import dp from "../assets/dp.webp"
 import { authDataContext } from '../context/AuthContext';
+import axios from "axios";
 
 
 
@@ -39,7 +40,7 @@ let [frontendCoverImage,setFrontendCoverImage]=useState(userData.coverImage || n
 let [backendCoverImage,setBackendCoverImage]=useState(null)
 let [saving,setSaving]=useState(false)
 const profileImage=useRef()
-const coverImage=useRef()
+const coverImage=useRef(null)
 
 
   function addSkill(e){
@@ -103,12 +104,13 @@ function addEducation(e){
      setBackendProfileImage(file)
      setFrontendProfileImage(URL.createObjectURL(file))
     }
-    function handleCoverImage(e){
-      let file=e.target.files[0]
-      setBackendCoverImage(file)
-      setFrontendCoverImage(URL.createObjectURL(file))
-     }
-
+    function handleCoverImage(e) {
+      let file = e.target.files[0];
+      if (file) {
+        setBackendCoverImage(file); // Set the file for backend upload
+        setFrontendCoverImage(URL.createObjectURL(file)); // Create a preview URL for the frontend
+      }
+    }
 const handleSaveProfile=async ()=>{
   setSaving(true)
   try {
@@ -130,6 +132,7 @@ const handleSaveProfile=async ()=>{
     }
 
     let result=await axios.put(serverUrl+"/api/user/updateprofile",formdata,{withCredentials:true})
+    console.log(result)
     setUserData(result.data)
     setSaving(false)
     setEdit(false)
@@ -143,6 +146,9 @@ const handleSaveProfile=async ()=>{
 
   return (
     <div className="w-full h-[100vh] fixed top-0  z-[100] flex justify-center items-center">
+    <input type="file" accept='image/*' hidden ref={profileImage} onChange={handleProfileImage}/>
+    <input type="file" accept='image/*' hidden ref={coverImage} onChange={handleCoverImage}/>
+
     
       <div className="w-[90%] max-w-[500px] h-[600px] bg-white relative overflow-auto z-[200] shadow-lg rounded-lg p-[10px]">
         <div
@@ -155,14 +161,14 @@ const handleSaveProfile=async ()=>{
           className="w-full h-[150px] bg-gray-500 rounded-lg mt-[40px] overflow-hidden"
           onClick={() => coverImage.current.click()}
         >
-          <img src="" alt="" className="w-full" />
+          <img src={frontendCoverImage} alt="" className="w-full" />
           <FiCamera className="absolute right-[20px] top-[60px] w-[25px] h-[25px] text-white cursor-pointer" />
         </div>
         <div
           className="w-[80px] h-[80px] rounded-full overflow-hidden absolute top-[150px] ml-[20px]"
           onClick={() => profileImage.current.click()}
         >
-          <img src={dp} alt="" className="w-full h-full" />
+          <img src={frontendProfileImage} alt="" className="w-full h-full" />
         </div>
         <div className="w-[20px] h-[20px] bg-[#17c1ff] absolute top-[200px] left-[90px] rounded-full flex justify-center items-center cursor-pointer">
           <FiPlus className="text-white" />
@@ -226,7 +232,7 @@ const handleSaveProfile=async ()=>{
               </div>
             </div>
         
-            <button className='w-[100%] h-[50px] rounded-full bg-[#24b2ff] mt-[40px] text-white' disable={saving} onClick={()=>handleSaveProfile()}>{saving?"saving...":"Save Profile"}</button>
+            <button className='w-[100%] h-[50px] rounded-full bg-[#24b2ff] mt-[40px] text-white' disabled={ saving } onClick={()=>handleSaveProfile()}>{saving ? "saving...":"Save Profile"}</button>
         </div>
         
       </div>
