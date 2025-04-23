@@ -8,7 +8,7 @@ import { userDataContext } from '../context/UserContext'
 function Signup() {
   const [show, setShow] = useState(false)
   const { serverUrl } = useContext(authDataContext)
-  let {userData,setUserData}=useContext(UserDataContext)
+  let {userData,setUserData}=useContext(userDataContext)
   const navigate = useNavigate()
 
   const [firstName, setFirstName] = useState("")
