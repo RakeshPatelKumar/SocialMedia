@@ -56,7 +56,7 @@ getCurrentUser();
 
 
     const value={
-        userData,setUserData,edit,setEdit
+        userData,setUserData,edit,setEdit,postData,setPostData
     }
   return (
     <div>
