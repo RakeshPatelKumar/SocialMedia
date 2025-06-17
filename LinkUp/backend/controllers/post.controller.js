@@ -89,7 +89,7 @@ export const comment=async (req,res)=>{
     //         relatedPost:postId
     //     })
     // }
-        // io.emit("commentAdded",{postId,comm:post.comment})
+        io.emit("commentAdded",{postId,comm:post.comment})
         return res.status(200).json(post)
 
     } catch (error) {

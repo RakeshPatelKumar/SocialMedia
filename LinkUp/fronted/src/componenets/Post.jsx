@@ -59,8 +59,17 @@ function Post({ id, author, like, comment, description, image, createdAt }) {
         setLikes(likes)
       }
     })
+    socket.on("commentAdded",({postId,comm})=>{
+  if(postId == id){
+    setComments(comm)
+  }
+})
+
+
+    
     return()=>{
       socket.off("likeUpdated")
+      socket.off("commentAdded")
     }
 
   },[id])
