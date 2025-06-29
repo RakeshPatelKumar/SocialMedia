@@ -9,6 +9,7 @@ import { LuSendHorizontal } from "react-icons/lu";
 import axios from "axios";
 import  { authDataContext } from "../context/AuthContext";
 import {io} from "socket.io-client"
+import ConnectionButton from "./ConnectionButton";
 
 let socket = io ("http://localhost:4000")
 function Post({ id, author, like, comment, description, image, createdAt }) {
@@ -96,7 +97,10 @@ function Post({ id, author, like, comment, description, image, createdAt }) {
             <div className="text-[16px]">{moment(createdAt).fromNow()}</div>
           </div>
         </div>
-        <div> {/*Button*/}</div>
+        <div> 
+          {userData._id !== author._id && 
+          <ConnectionButton userId = {author._id} />}
+        </div>
       </div>
       <div
         className={`w-full ${

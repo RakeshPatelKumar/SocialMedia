@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 let connectionSchema=new mongoose.Schema({
 
     sender:{
-        typr:mongoose.Schema.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:"User"
     },
     receiver:{
@@ -12,10 +12,10 @@ let connectionSchema=new mongoose.Schema({
     status:{
         type:String,
         enum:["pending","accepted","rejected"],
-        default:"pending4"
+        default:"pending"
     }
 
 },{timestamps:true})
 
-const Connection=mongoose.model("Connection,connectioSchema")
+const Connection=mongoose.model("Connection",connectionSchema)
 export default Connection

@@ -5,7 +5,7 @@ import { acceptConnection, getConnectionRequests, getConnectionStatus, getUserCo
 import isAuth from "../middlewares/isAuth.js"
 let connectionRouter=express.Router()
 
-connectionRouter.get("/send/:id",isAuth,sendConnection)
+connectionRouter.post("/send/:id",isAuth,sendConnection)
 connectionRouter.put("/accept/:connectionId",isAuth,acceptConnection)
 connectionRouter.put("/reject/:connectionId",isAuth,rejectConnectiont)
 connectionRouter.get("/getstatus/:userId",isAuth,getConnectionStatus)
