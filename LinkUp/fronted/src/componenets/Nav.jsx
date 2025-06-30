@@ -74,7 +74,7 @@ function Nav() {
               View Profile
             </button>
             <div className="w-full h-[1px] bg-gray-700 "></div>
-            <div className="flex  w-full items-center justify-start text-gray-600 gap-[10px] cursor-pointer">
+            <div className="flex  w-full items-center justify-start text-gray-600 gap-[10px] cursor-pointer" onClick={() => navigate("/network")  }>
               <FaUserGroup className="w-[23px] h-[23px] text-gray-600 " />
               <div>My Networks</div>
             </div>
@@ -91,7 +91,7 @@ function Nav() {
           <IoMdHome className=" w-[23px] h-[23px] text-white" />
           <div>Home</div>
         </div>
-        <div className="lg:flex flex-col items-center justify-center text-white hidden ">
+        <div className="lg:flex flex-col items-center justify-center text-white hidden cursor-pointer" onClick={() => navigate("/network")}>
           <FaUserFriends className=" w-[23px] h-[23px] text-white" />
           <div>My Network</div>
         </div>
