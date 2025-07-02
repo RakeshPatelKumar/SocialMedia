@@ -36,32 +36,39 @@ function Network() {
 
 
 
-                    <div> 
-                        {connection.map((connection, index) => (
-                            <div className="w-full min-h-[100px] flex justify-between item-center">
-                                <div className='flex justify-start items-center gap-[20px]'>
-                                    <div className="w-[60px] h-[60px] rounded-full overflow-hidden cursor-pointer justify-center items-center">
-                                        <img
-                                            src={connection.sender?.profileImage || dp}
-                                            alt=""
-                                            className="w-full h-f ull"
-                                        />
-                                    </div>
-                                    <div className="text-[19px] font-semibold text-gray-700">{`${connection.sender.firstName} ${connection.sender.lastName}`}</div>
 
+                    {connection.map((connection, index) => (
+                        <div className="w-full min-h-[100px] flex justify-between item-center">
+                            <div className='flex justify-start items-center gap-[10px]'>
+                                <div className="w-[60px] h-[60px] rounded-full overflow-hidden cursor-pointer justify-center items-center">
+                                    <img
+                                        src={connection.sender?.profileImage || dp}
+                                        alt=""
+                                        className="w-full h-f ull"
+                                    />
                                 </div>
+                                <div className="text-[19px] font-semibold text-gray-700">{`${connection.sender.firstName} ${connection.sender.lastName}`}</div>
 
-                              
-                              </div>
+                            </div>
+                            <div></div>
 
-                                
-                        ))}
-                    </div>
-                </div>
-            }
+                        </div>
 
+
+
+
+
+
+                    ))}
+
+
+                </div>}
 
         </div>
+
+
+
+
 
     );
 }
