@@ -87,7 +87,7 @@ function Nav() {
           </div>
         )}
 
-        <div className=" lg:flex flex-col items-center justify-center text-white hidden">
+        <div className=" lg:flex flex-col items-center justify-center text-white hidden" onClick={() => navigate("/login")  }>
           <IoMdHome className=" w-[23px] h-[23px] text-white" />
           <div>Home</div>
         </div>

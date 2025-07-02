@@ -3,11 +3,13 @@ import { authDataContext } from '../context/AuthContext';
 import axios from 'axios';
 import io from 'socket.io-client';
 import { userDataContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 const socket = io("http://localhost:4000");
 function ConnectionButton({ userId }) {
     let { serverUrl } = useContext(authDataContext);
     let {userData,setUserData} = useContext(userDataContext);
     let [status, setStatus] = useState("");
+    let navigate = useNavigate();   
 
     const handleSendConnection = async () => {
         try {
@@ -18,6 +20,15 @@ function ConnectionButton({ userId }) {
         }
 
     } 
+
+    const handleRemoveConnection = async () => {
+        try {
+            let result = await axios.delete(`${serverUrl}/api/connection/remove/${userId}`, { withCredentials: true });
+            console.log(result);
+        } catch (error) {
+            console.error("Error receiving connection:", error);
+        }
+    }
 
 const handleGetStatus = async () => {
     try {
@@ -53,15 +64,22 @@ const handleGetStatus = async () => {
 
     const handleClick=async () => {
         if (status === "disconnect") {
-            await handleSendConnection()
-            }else if (status === "recived") {
+            await handleRemoveConnection()
+            }
+            else if (status === "received") {
+                navigate("/network")
+
+            }
+            else{
+            await handleSendConnection();
+                 
 
             }
         }
 
   return (
    <div>
-    <button className="min-w-[100px] h-[40px] rounded-full  border-2 border-[#2dc0ff] text-[#2dc0ff]">{status}</button>
+    <button className="min-w-[100px] h-[40px] rounded-full  border-2 border-[#2dc0ff] text-[#2dc0ff]" onClick={handleClick} disabled ={status == "pending"}>{status}</button>
 
    </div>
      
