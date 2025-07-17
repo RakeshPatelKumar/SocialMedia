@@ -88,7 +88,7 @@ function Post({ id, author, like, comment, description, image, createdAt }) {
             <img src={author?.profileImage || dp} alt="" className="h-full" />
           </div>
           <div>
-            <div className="text-[22px] font-semibold">
+            <div className="text-[24px] font-bold">
               {`${author?.firstName || "Unknown"} ${author?.lastName || ""}`}
             </div>
             <div className="text-[16px]">

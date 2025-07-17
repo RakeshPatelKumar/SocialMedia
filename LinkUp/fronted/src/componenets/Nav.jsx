@@ -37,6 +37,7 @@ function Nav() {
         <div
           onClick={() => {
             setActiveSearch(false);
+            navigate("/");
           }}
         >
           <img src={logo2} alt="" className="w-[50px]" />
@@ -70,7 +71,7 @@ function Nav() {
               <img src={userData.profileImage || dp} alt="" className="w-full h-full" />
             </div>
             <div className="text-[19px] font-semibold text-gray-700">{`${userData.firstName} ${userData.lastName}`}</div>
-            <button className="w-[100%] h-[40px] rounded-full border-2 border-[#9a2b57] text-[#9a2b57]">
+            <button className="w-[100%] h-[40px] rounded-full border-2 border-[#9a2b57] text-[#9a2b57]" onClick={() => navigate("/profile") }>
               View Profile
             </button>
             <div className="w-full h-[1px] bg-gray-700 "></div>
